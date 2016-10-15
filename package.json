@@ -1,0 +1,32 @@
+{
+  "name": "jsonapi-normalizer",
+  "version": "0.1.0",
+  "description": "Normalizes JSONAPI responses for use in Redux or similar systems.",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify src/index.js -o dist/index.js -t [ babelify ]",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "stevenpetryk/jsonapi-normalizer"
+  },
+  "keywords": [
+    "jsonapi",
+    "json",
+    "normalizr",
+    "redux"
+  ],
+  "author": "Steven Petryk <me@stevenpetryk.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stevenpetryk/jsonapi-normalizer/issues"
+  },
+  "homepage": "https://github.com/stevenpetryk/jsonapi-normalizer#readme",
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0"
+  }
+}
