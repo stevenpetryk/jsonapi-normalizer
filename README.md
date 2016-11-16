@@ -1,5 +1,9 @@
 # jsonapi-normalizer
 
+[![CircleCI](https://circleci.com/gh/stevenpetryk/jsonapi-normalizer.svg?style=shield)](https://circleci.com/gh/stevenpetryk/jsonapi-normalizer)
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
+
 A tool similar to [normalizr](https://github.com/paularmstrong/normalizr), but which leverages the
 self-describing schemas present in [JSONAPI](http://jsonapi.org) to automatically normalize without
 hand-written schema definitions.
