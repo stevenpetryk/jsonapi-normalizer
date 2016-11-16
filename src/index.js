@@ -1,6 +1,6 @@
 import { compose } from './utils'
 
-export default function (response) {
+module.exports = function (response) {
   const data = response.data || []
   const included = response.included || []
 
