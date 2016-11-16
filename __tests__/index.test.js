@@ -3,6 +3,7 @@ import normalize from '../src'
 import simpleCollection from '../test-collections/simpleCollection'
 import belongsToCollection from '../test-collections/belongsToCollection'
 import belongsToOwnTypeCollection from '../test-collections/belongsToOwnTypeCollection'
+import hasManyCollection from '../test-collections/hasManyCollection'
 
 describe('normalize()', () => {
   it('normalizes a simple collection', () => {
@@ -68,5 +69,30 @@ describe('normalize()', () => {
         }
       }
     )
+  })
+
+  it('normalizes a has-many collection', () => {
+    expect(
+      normalize(hasManyCollection)
+    ).toEqual({
+      entities: {
+        articles: {
+          '1': {
+            id: '1',
+            title: 'title',
+            body: 'body',
+            tags: [
+              { type: 'tags', id: '1' },
+              { type: 'tags', id: '2' }
+            ]
+          }
+        },
+
+        tags: {
+          1: { id: '1', name: 'cloud' },
+          2: { id: '2', name: 'synergy' }
+        }
+      }
+    })
   })
 })

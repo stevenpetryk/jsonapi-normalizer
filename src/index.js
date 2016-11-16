@@ -48,7 +48,13 @@ function extractRelationships (resource) {
   var relationships = {}
 
   Object.keys(resource.relationships).map(type => {
-    relationships[type] = resource.relationships[type].data
+    const theseRelationships = resource.relationships[type].data
+
+    if (Array.isArray(theseRelationships)) {
+      relationships[type] = [ ...theseRelationships ]
+    } else {
+      relationships[type] = { ...theseRelationships }
+    }
   })
 
   return {
