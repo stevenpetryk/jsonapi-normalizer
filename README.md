@@ -8,31 +8,34 @@ hand-written schema definitions.
 
 Turns this:
 
-```json
+```js
 {
-  "data": [{
-    "type": "articles",
-    "id": "1",
-    "attributes": {
-      "title": "title",
-      "body": "body"
+  data: [{
+    type: 'articles',
+    id: '1',
+    attributes: {
+      title: 'title',
+      body: 'body'
     },
-    "relationships": {
-      "author": {
-        "data": {
-          "id": "42",
-          "type": "users"
+    relationships: {
+      author: {
+        data: {
+          id: '42',
+          type: 'users'
         }
       }
     }
   }],
-  "included": [{
-    "type": "users",
-    "id": "42",
-    "attributes": {
-      "name": "John"
+
+  included: [
+    {
+      type: 'users',
+      id: '42',
+      attributes: {
+        name: 'John'
+      }
     }
-  }]
+  ]
 }
 ```
 
