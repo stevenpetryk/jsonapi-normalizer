@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "browserify src/index.js -o dist/index.js -t [ babelify ]",
-    "test": "jest"
+    "test": "npm run lint && jest",
+    "lint": "standard"
   },
   "repository": {
     "type": "git",
