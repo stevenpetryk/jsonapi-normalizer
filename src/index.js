@@ -7,11 +7,26 @@ export default function (response) {
   const transformer = compose(extractRelationships, flattenResource)
 
   return {
-    entities: {
-      ...categorizeByType(data, transformer),
-      ...categorizeByType(included, transformer)
-    }
+    entities: mergeEachKey(
+      categorizeByType(data, transformer),
+      categorizeByType(included, transformer)
+    )
   }
+}
+
+function mergeEachKey (object1, object2) {
+  var result = {}
+
+  const allKeys = Object.keys(object1).concat(Object.keys(object2))
+
+  allKeys.forEach((key) => {
+    result[key] = {
+      ...object1[key],
+      ...object2[key]
+    }
+  })
+
+  return result
 }
 
 function categorizeByType (resources, transformer) {

@@ -2,6 +2,7 @@ import normalize from '../src'
 
 import simpleCollection from '../test-collections/simpleCollection'
 import belongsToCollection from '../test-collections/belongsToCollection'
+import belongsToOwnTypeCollection from '../test-collections/belongsToOwnTypeCollection'
 
 describe('normalize()', () => {
   it('normalizes a simple collection', () => {
@@ -37,6 +38,28 @@ describe('normalize()', () => {
             }
           },
           users: {
+            '42': {
+              id: '42',
+              name: 'John'
+            }
+          }
+        }
+      }
+    )
+  })
+
+  it('normalizes a collection with references to objects of the same type', () => {
+    expect(
+      normalize(belongsToOwnTypeCollection)
+    ).toEqual(
+      {
+        entities: {
+          users: {
+            '1': {
+              id: '1',
+              name: 'Steve',
+              manager: { type: 'users', id: '42' }
+            },
             '42': {
               id: '42',
               name: 'John'
