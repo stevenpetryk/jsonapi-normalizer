@@ -49,7 +49,7 @@ Into this:
         id: '1',
         title: 'title',
         body: 'body',
-        author: { type: 'users', id: '42' }
+        author: { type: 'users', id: '42' } // see Caveats below!
       }
     },
     users: {
