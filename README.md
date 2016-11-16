@@ -70,7 +70,7 @@ import normalize from 'jsonapi-normalizer'
 normalize(someJsonApiObject)
 ```
 
-That's all there is to it! No crazy options or schema definitions.
+That's all there is to it! No options or schema definitions.
 
 ## Caveats
 
@@ -79,8 +79,8 @@ Note that, unlike `normalizr`, this library will *always* point to associations 
 `normalizr` where polymorphic associations are referenced differently than regular associations. It
 will also help you ensure you're retrieving the correct object when resolving the association.
 
-If this significantly hinders app development, open an issue to discuss. Better yet, submit a PR
-that allows this behavior as an options.
+If this significantly hinders app development and you'd prefer `normalizr`'s behavior, open an
+issue to discuss. Better yet, submit a PR that allows this behavior as an option.
 
 ## Installation
 
