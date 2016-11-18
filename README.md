@@ -47,6 +47,10 @@ Into this:
 
 ```js
 {
+  result: {
+    articles: ['1'],
+    users: ['42']
+  },
   entities: {
     articles: {
       '1': {
@@ -83,8 +87,11 @@ Note that, unlike `normalizr`, this library will *always* point to associations 
 `normalizr` where polymorphic associations are referenced differently than regular associations. It
 will also help you ensure you're retrieving the correct object when resolving the association.
 
-If this significantly hinders app development and you'd prefer `normalizr`'s behavior, open an
-issue to discuss. Better yet, submit a PR that allows this behavior as an option.
+Similarly, `result` will always have keys that reference the name of the schema. This is also for
+the sake of consistency across all responses.
+
+If either of these behaviors significantly hinders app development and you'd prefer `normalizr`'s
+behavior, open an issue to discuss. Better yet, submit a PR that allows this behavior as an option.
 
 ## Installation
 
