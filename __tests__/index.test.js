@@ -11,6 +11,9 @@ describe('normalize()', () => {
       normalize(simpleCollection)
     ).toEqual(
       {
+        result: {
+          articles: ['1']
+        },
         entities: {
           articles: {
             '1': {
@@ -29,6 +32,10 @@ describe('normalize()', () => {
       normalize(belongsToCollection)
     ).toEqual(
       {
+        result: {
+          articles: ['1'],
+          users: ['42']
+        },
         entities: {
           articles: {
             '1': {
@@ -54,6 +61,9 @@ describe('normalize()', () => {
       normalize(belongsToOwnTypeCollection)
     ).toEqual(
       {
+        result: {
+          users: ['1', '42']
+        },
         entities: {
           users: {
             '1': {
@@ -75,6 +85,10 @@ describe('normalize()', () => {
     expect(
       normalize(hasManyCollection)
     ).toEqual({
+      result: {
+        articles: ['1'],
+        tags: ['1', '2']
+      },
       entities: {
         articles: {
           '1': {
@@ -89,8 +103,8 @@ describe('normalize()', () => {
         },
 
         tags: {
-          1: { id: '1', name: 'cloud' },
-          2: { id: '2', name: 'synergy' }
+          '1': { id: '1', name: 'cloud' },
+          '2': { id: '2', name: 'synergy' }
         }
       }
     })

@@ -3,11 +3,26 @@ module.exports = function (response) {
   const included = response.included || []
 
   var allResources = [...data, ...included]
+  var result = {}
   var entities = {}
 
-  allResources.forEach(entity => addEntity(entities, entity))
+  allResources.forEach(entity => {
+    addResult(result, entity)
+    addEntity(entities, entity)
+  })
 
-  return { entities }
+  return {
+    result,
+    entities
+  }
+}
+
+function addResult (result, entity) {
+  const { type, id } = entity
+
+  if (!result[type]) result[type] = []
+
+  result[type].push(id)
 }
 
 function addEntity (entities, entity) {
