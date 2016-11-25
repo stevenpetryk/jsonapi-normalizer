@@ -1,5 +1,12 @@
 module.exports = function (response) {
-  const data = response.data || []
+  var data
+
+  if (Array.isArray(response.data)) {
+    data = response.data
+  } else {
+    data = [ response.data ]
+  }
+
   const included = response.included || []
 
   var allResources = [...data, ...included]
