@@ -1,11 +1,42 @@
 import normalize from '../src'
 
-import simpleCollection from '../test-collections/simpleCollection'
-import belongsToCollection from '../test-collections/belongsToCollection'
-import belongsToOwnTypeCollection from '../test-collections/belongsToOwnTypeCollection'
-import hasManyCollection from '../test-collections/hasManyCollection'
+import singleItem from '../test-data/singleItem'
+import simpleCollection from '../test-data/simpleCollection'
+import belongsToCollection from '../test-data/belongsToCollection'
+import belongsToOwnTypeCollection from '../test-data/belongsToOwnTypeCollection'
+import hasManyCollection from '../test-data/hasManyCollection'
 
 describe('normalize()', () => {
+  it('normalizes a single object', () => {
+    expect(
+      normalize(singleItem)
+    ).toEqual(
+      {
+        result: {
+          users: ['1'],
+          articles: ['1']
+        },
+        entities: {
+          users: {
+            '1': {
+              id: '1',
+              name: 'Steven',
+              articles: [
+                { id: '1', type: 'articles' }
+              ]
+            }
+          },
+          articles: {
+            '1': {
+              id: '1',
+              body: 'This is my article'
+            }
+          }
+        }
+      }
+    )
+  })
+
   it('normalizes a simple collection', () => {
     expect(
       normalize(simpleCollection)
