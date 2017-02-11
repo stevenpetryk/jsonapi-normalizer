@@ -96,7 +96,7 @@ behavior, open an issue to discuss. Better yet, submit a PR that allows this beh
 ## Installation
 
 ```bash
-npm install --save jsonapi-normalizr
+npm install --save jsonapi-normalizer
 ```
 
 ## Contributing
