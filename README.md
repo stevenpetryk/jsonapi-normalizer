@@ -73,9 +73,52 @@ Into this:
 ## Usage
 
 ```js
-import normalize from 'jsonapi-normalizer'
+import { normalize, denormalize } from 'jsonapi-normalizer'
 
-normalize(someJsonApiObject)
+normalize({
+  data: {
+    type: 'users',
+    id: '1',
+    attributes: {
+      name: 'Steven'
+    },
+    relationships: {
+      articles: {
+        data: [
+          { id: '1', type: 'articles' }
+        ]
+      }
+    }
+  },
+
+  included: [
+    {
+      type: 'articles',
+      id: '1',
+      attributes: {
+        body: 'This is my article'
+      }
+    }
+  ]
+})
+
+denormalize({ users: '1' }, {
+  users: {
+    '1': {
+      id: '1',
+      name: 'Steven',
+      articles: [
+        { id: '1', type: 'articles' }
+      ]
+    }
+  },
+  articles: {
+    '1': {
+      id: '1',
+      body: 'This is my article'
+    }
+  }
+})
 ```
 
 That's all there is to it! No options or schema definitions.

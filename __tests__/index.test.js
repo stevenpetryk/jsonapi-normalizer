@@ -1,143 +1,77 @@
-import normalize from '../src'
+import { normalize, denormalize } from '../src'
 
-import singleItem from '../test-data/singleItem'
-import simpleCollection from '../test-data/simpleCollection'
-import belongsToCollection from '../test-data/belongsToCollection'
-import belongsToOwnTypeCollection from '../test-data/belongsToOwnTypeCollection'
-import hasManyCollection from '../test-data/hasManyCollection'
+import denormalizedSingleItem from '../test-data/denormalized/singleItem'
+import denormalizedSimpleCollection from '../test-data/denormalized/simpleCollection'
+import denormalizedBelongsToCollection from '../test-data/denormalized/belongsToCollection'
+import denormalizedBelongsToOwnTypeCollection from '../test-data/denormalized/belongsToOwnTypeCollection'
+import denormalizedHasManyCollection from '../test-data/denormalized/hasManyCollection'
+
+import normalizedSingleItem from '../test-data/normalized/singleItem'
+import normalizedSimpleCollection from '../test-data/normalized/simpleCollection'
+import normalizedBelongsToCollection from '../test-data/normalized/belongsToCollection'
+import normalizedBelongsToOwnTypeCollection from '../test-data/normalized/belongsToOwnTypeCollection'
+import normalizedHasManyCollection from '../test-data/normalized/hasManyCollection'
 
 describe('normalize()', () => {
   it('normalizes a single object', () => {
     expect(
-      normalize(singleItem)
-    ).toEqual(
-      {
-        result: {
-          users: ['1'],
-          articles: ['1']
-        },
-        entities: {
-          users: {
-            '1': {
-              id: '1',
-              name: 'Steven',
-              articles: [
-                { id: '1', type: 'articles' }
-              ]
-            }
-          },
-          articles: {
-            '1': {
-              id: '1',
-              body: 'This is my article'
-            }
-          }
-        }
-      }
-    )
+      normalize(denormalizedSingleItem)
+    ).toEqual(normalizedSingleItem)
   })
 
   it('normalizes a simple collection', () => {
     expect(
-      normalize(simpleCollection)
-    ).toEqual(
-      {
-        result: {
-          articles: ['1']
-        },
-        entities: {
-          articles: {
-            '1': {
-              id: '1',
-              title: 'title',
-              body: 'body'
-            }
-          }
-        }
-      }
-    )
+      normalize(denormalizedSimpleCollection)
+    ).toEqual(normalizedSimpleCollection)
   })
 
   it('normalizes a collection with a belongs-to relationship', () => {
     expect(
-      normalize(belongsToCollection)
-    ).toEqual(
-      {
-        result: {
-          articles: ['1'],
-          users: ['42']
-        },
-        entities: {
-          articles: {
-            '1': {
-              id: '1',
-              title: 'title',
-              body: 'body',
-              author: { type: 'users', id: '42' }
-            }
-          },
-          users: {
-            '42': {
-              id: '42',
-              name: 'John'
-            }
-          }
-        }
-      }
-    )
+      normalize(denormalizedBelongsToCollection)
+    ).toEqual(normalizedBelongsToCollection)
   })
 
   it('normalizes a collection with references to objects of the same type', () => {
     expect(
-      normalize(belongsToOwnTypeCollection)
-    ).toEqual(
-      {
-        result: {
-          users: ['1', '42']
-        },
-        entities: {
-          users: {
-            '1': {
-              id: '1',
-              name: 'Steve',
-              manager: { type: 'users', id: '42' }
-            },
-            '42': {
-              id: '42',
-              name: 'John'
-            }
-          }
-        }
-      }
-    )
+      normalize(denormalizedBelongsToOwnTypeCollection)
+    ).toEqual(normalizedBelongsToOwnTypeCollection)
   })
 
   it('normalizes a has-many collection', () => {
     expect(
-      normalize(hasManyCollection)
-    ).toEqual({
-      result: {
-        articles: ['1'],
-        tags: ['1', '2']
-      },
-      entities: {
-        articles: {
-          '1': {
-            id: '1',
-            title: 'title',
-            body: 'body',
-            tags: [
-              { type: 'tags', id: '1' },
-              { type: 'tags', id: '2' }
-            ]
-          }
-        },
+      normalize(denormalizedHasManyCollection)
+    ).toEqual(normalizedHasManyCollection)
+  })
+})
 
-        tags: {
-          '1': { id: '1', name: 'cloud' },
-          '2': { id: '2', name: 'synergy' }
-        }
-      }
-    })
+describe('denormalize()', () => {
+  it('denormalizes a single object', () => {
+    expect(
+      denormalize({ users: '1' }, normalizedSingleItem.entities)
+    ).toEqual(denormalizedSingleItem)
+  })
+
+  it('denormalizes a simple collection', () => {
+    expect(
+      denormalize({ articles: ['1'] }, normalizedSimpleCollection.entities)
+    ).toEqual(denormalizedSimpleCollection)
+  })
+
+  it('denormalizes a collection with a belongs-to relationship', () => {
+    expect(
+      denormalize({ articles: ['1'] }, normalizedBelongsToCollection.entities)
+    ).toEqual(denormalizedBelongsToCollection)
+  })
+
+  it('denormalizes a collection with references to objects of the same type', () => {
+    expect(
+      denormalize({ users: ['1'] }, normalizedBelongsToOwnTypeCollection.entities)
+    ).toEqual(denormalizedBelongsToOwnTypeCollection)
+  })
+
+  it('denormalizes a has-many collection', () => {
+    expect(
+      denormalize({ articles: ['1'] }, normalizedHasManyCollection.entities)
+    ).toEqual(denormalizedHasManyCollection)
   })
 })
