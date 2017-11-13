@@ -51,10 +51,13 @@ module.exports = {
               return acc
             }
             includedCache[type] = [ ...includedCache[type], id ]
-            return [
-              ...acc,
-              entityToResource(type, entities[type][id])
-            ]
+            if (entities[type] && entities[type][id]) {
+              return [
+                ...acc,
+                entityToResource(type, entities[type][id])
+              ]
+            }
+            return acc
           }, [])
 
           return {
