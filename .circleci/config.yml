@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/mern-starter
     docker:
       - image: circleci/node:8.9.0
     steps:
@@ -20,3 +19,5 @@ jobs:
           command: yarn test --reporters="default" --reporters="jest-junit"
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+      - store_test_results:
+          path: reports/junit/js-test-results.xml
