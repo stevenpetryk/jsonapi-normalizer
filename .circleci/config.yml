@@ -18,6 +18,6 @@ jobs:
           name: Tests
           command: yarn test --reporters="default" --reporters="jest-junit"
           environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+            JEST_JUNIT_OUTPUT: test-results/jest/results.xml
       - store_test_results:
-          path: reports/junit/js-test-results.xml
+          path: test-results
