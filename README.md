@@ -48,8 +48,7 @@ Into this:
 ```js
 {
   result: {
-    articles: ['1'],
-    users: ['42']
+    articles: ['1']
   },
   entities: {
     articles: {
