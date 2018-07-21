@@ -1,69 +1,13 @@
-module.exports = function (response) {
-  var data
+import normalize from './normalize'
 
-  if (Array.isArray(response.data)) {
-    data = response.data
-  } else {
-    data = [ response.data ]
-  }
+export default function (...args) {
+  console.warn(`
+Directly importing 'normalize' is deprecated. Please use the named export:
 
-  const included = response.included || []
+  import { normalize } from 'json-api-normalizer'
+`)
 
-  var allResources = [...data, ...included]
-  var result = {}
-  var entities = {}
-
-  allResources.forEach(entity => {
-    addResult(result, entity)
-    addEntity(entities, entity)
-  })
-
-  return {
-    result,
-    entities
-  }
+  return normalize(...args)
 }
 
-function addResult (result, entity) {
-  const { type, id } = entity
-
-  if (!result[type]) result[type] = []
-
-  result[type].push(id)
-}
-
-function addEntity (entities, entity) {
-  const { type, id, attributes } = entity
-
-  if (!entities[type]) entities[type] = {}
-
-  entities[type][id] = {
-    id,
-    ...attributes,
-    ...extractRelationships(entity)
-  }
-
-  return entities
-}
-
-function extractRelationships (entity) {
-  const { relationships: responseRelationships } = entity
-
-  if (!responseRelationships) return undefined
-
-  var relationships = {}
-
-  Object.keys(responseRelationships).map(type => {
-    relationships[type] = duplicateRelationships(responseRelationships[type].data)
-  })
-
-  return relationships
-}
-
-function duplicateRelationships (relationships) {
-  if (Array.isArray(relationships)) {
-    return [ ...relationships ]
-  } else {
-    return { ...relationships }
-  }
-}
+export { normalize }

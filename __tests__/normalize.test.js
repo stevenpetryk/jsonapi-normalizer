@@ -1,4 +1,4 @@
-import normalize from '../src'
+import normalize from '../src/normalize'
 
 import singleItem from '../test-data/singleItem'
 import simpleCollection from '../test-data/simpleCollection'
