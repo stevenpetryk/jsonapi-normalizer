@@ -28,8 +28,7 @@ export default {
 
   normalized: {
     result: {
-      users: ['1'],
-      articles: ['1']
+      users: ['1']
     },
     entities: {
       users: {

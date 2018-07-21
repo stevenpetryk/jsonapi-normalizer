@@ -29,7 +29,7 @@ export default {
 
   normalized: {
     result: {
-      users: ['1', '42']
+      users: ['1']
     },
     entities: {
       users: {
