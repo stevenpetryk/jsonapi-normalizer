@@ -1,6 +1,6 @@
 {
   "name": "jsonapi-normalizer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Normalizes JSONAPI responses for use in Redux or similar systems.",
   "main": "dist/index.js",
   "scripts": {
