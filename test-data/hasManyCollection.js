@@ -37,8 +37,7 @@ export default {
 
   normalized: {
     result: {
-      articles: ['1'],
-      tags: ['1', '2']
+      articles: ['1']
     },
     entities: {
       articles: {

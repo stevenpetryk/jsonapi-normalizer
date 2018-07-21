@@ -9,12 +9,15 @@ export default function (response) {
 
   const included = response.included || []
 
-  let allResources = [...data, ...included]
   let result = {}
   let entities = {}
 
-  allResources.forEach(entity => {
+  data.forEach(entity => {
     addResult(result, entity)
+    addEntity(entities, entity)
+  })
+
+  included.forEach(entity => {
     addEntity(entities, entity)
   })
 
