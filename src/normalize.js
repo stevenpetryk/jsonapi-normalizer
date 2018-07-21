@@ -1,5 +1,5 @@
 export default function (response) {
-  var data
+  let data
 
   if (Array.isArray(response.data)) {
     data = response.data
@@ -9,9 +9,9 @@ export default function (response) {
 
   const included = response.included || []
 
-  var allResources = [...data, ...included]
-  var result = {}
-  var entities = {}
+  let allResources = [...data, ...included]
+  let result = {}
+  let entities = {}
 
   allResources.forEach(entity => {
     addResult(result, entity)
@@ -51,7 +51,7 @@ function extractRelationships (entity) {
 
   if (!responseRelationships) return undefined
 
-  var relationships = {}
+  let relationships = {}
 
   Object.keys(responseRelationships).map(type => {
     relationships[type] = duplicateRelationships(responseRelationships[type].data)
