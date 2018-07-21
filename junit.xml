@@ -1,0 +1,14 @@
+<testsuites name="jest tests" tests="5" failures="0" time="0.957">
+  <testsuite name="normalize()" errors="0" failures="0" skipped="0" timestamp="2018-07-21T22:23:51" time="0.41" tests="5">
+    <testcase classname="normalize() single object" name="normalize() single object" time="0.005">
+    </testcase>
+    <testcase classname="normalize() simple collection" name="normalize() simple collection" time="0">
+    </testcase>
+    <testcase classname="normalize() collection with a belongs-to relationship" name="normalize() collection with a belongs-to relationship" time="0.001">
+    </testcase>
+    <testcase classname="normalize() collection with references to objects of the same type" name="normalize() collection with references to objects of the same type" time="0">
+    </testcase>
+    <testcase classname="normalize() has-many collection" name="normalize() has-many collection" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>
