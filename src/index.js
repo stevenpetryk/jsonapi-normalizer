@@ -1,4 +1,4 @@
-module.exports = function (response) {
+module.exports = function (response, relationAsArray = false) {
   let data
 
   if (Array.isArray(response.data)) {
@@ -14,11 +14,11 @@ module.exports = function (response) {
 
   data.forEach(entity => {
     addResult(result, entity)
-    addEntity(entities, entity)
+    addEntity(entities, entity, relationAsArray)
   })
 
   included.forEach(entity => {
-    addEntity(entities, entity)
+    addEntity(entities, entity, relationAsArray)
   })
 
   return {
@@ -35,7 +35,7 @@ function addResult (result, entity) {
   result[type].push(id)
 }
 
-function addEntity (entities, entity) {
+function addEntity (entities, entity, relationAsArray) {
   const { type, id, attributes } = entity
 
   if (!entities[type]) entities[type] = {}
@@ -43,13 +43,13 @@ function addEntity (entities, entity) {
   entities[type][id] = {
     id,
     ...attributes,
-    ...extractRelationships(entity)
+    ...extractRelationships(entity, relationAsArray)
   }
 
   return entities
 }
 
-function extractRelationships (entity) {
+function extractRelationships (entity, relationAsArray) {
   const { relationships: responseRelationships } = entity
 
   if (!responseRelationships) return undefined
@@ -57,13 +57,27 @@ function extractRelationships (entity) {
   let relationships = {}
 
   Object.keys(responseRelationships).map(type => {
-    relationships[type] = duplicateRelationships(responseRelationships[type].data)
+    relationships[type] = duplicateRelationships(responseRelationships[type].data, relationAsArray)
   })
 
   return relationships
 }
 
-function duplicateRelationships (relationships) {
+function duplicateRelationshipsAsArray (relationships) {
+  if (Array.isArray(relationships)) {
+    return relationships.map(obj => {
+      return obj.id
+    })
+  } else {
+    return [ relationships.id ]
+  }
+}
+
+function duplicateRelationships (relationships, relationAsArray) {
+  if (relationAsArray) {
+    return duplicateRelationshipsAsArray(relationships)
+  }
+
   if (Array.isArray(relationships)) {
     return [ ...relationships ]
   } else {
