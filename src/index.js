@@ -69,7 +69,7 @@ function duplicateRelationshipsAsArray (relationships) {
       return obj.id
     })
   } else {
-    return [ relationships.id ]
+    return relationships.id
   }
 }
 
