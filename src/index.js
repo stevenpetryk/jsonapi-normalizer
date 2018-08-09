@@ -64,6 +64,7 @@ function extractRelationships (entity, relationAsArray) {
 }
 
 function duplicateRelationshipsAsArray (relationships) {
+  if (!relationships) return null
   if (Array.isArray(relationships)) {
     return relationships.map(obj => {
       return obj.id
