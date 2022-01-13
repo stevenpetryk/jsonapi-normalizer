@@ -38,7 +38,7 @@ export default {
           id: '1',
           title: 'title',
           body: 'body',
-          author: ['42']
+          author: '42'
         }
       },
       users: {

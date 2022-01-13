@@ -36,7 +36,7 @@ export default {
         '1': {
           id: '1',
           name: 'Steve',
-          manager: ['42']
+          manager: '42'
         },
         '42': {
           id: '42',
