@@ -1,5 +1,5 @@
 {
-  "name": "jsonapi-normalizer",
+  "name": "@beetrack/jsonapi-normalizer",
   "version": "2.0.1",
   "description": "Normalizes JSONAPI responses for use in Redux or similar systems.",
   "main": "dist/index.js",
@@ -7,11 +7,11 @@
     "build": "webpack",
     "test": "npm run lint && jest",
     "lint": "standard",
-    "prepublish": "npm run build"
+    "deploy": "npm run test && npm run build && npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "stevenpetryk/jsonapi-normalizer"
+    "url": "beetrack/jsonapi-normalizer"
   },
   "keywords": [
     "jsonapi",
@@ -19,12 +19,12 @@
     "normalizr",
     "redux"
   ],
-  "author": "Steven Petryk <me@stevenpetryk.com>",
+  "author": "Beetrack",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stevenpetryk/jsonapi-normalizer/issues"
+    "url": "https://github.com/Beetrack/jsonapi-normalizer/issues"
   },
-  "homepage": "https://github.com/stevenpetryk/jsonapi-normalizer#readme",
+  "homepage": "https://github.com/Beetrack/jsonapi-normalizer#readme",
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-jest": "^16.0.0",

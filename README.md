@@ -8,6 +8,8 @@ A tool similar to [normalizr](https://github.com/paularmstrong/normalizr), but w
 self-describing schemas present in [JSONAPI](http://jsonapi.org) to automatically normalize without
 hand-written schema definitions.
 
+Unlike the original code, this fork will always render relationships as an array of ids. [See this explication](https://github.com/stevenpetryk/jsonapi-normalizer#caveats)
+
 ## TL;DR
 
 Turns this:
@@ -56,7 +58,7 @@ Into this:
         id: '1',
         title: 'title',
         body: 'body',
-        author: { type: 'users', id: '42' } // see Caveats below!
+        author: ['42']
       }
     },
     users: {
@@ -78,19 +80,6 @@ normalize(someJsonApiObject)
 ```
 
 That's all there is to it! No options or schema definitions.
-
-## Caveats
-
-Note that, unlike `normalizr`, this library will *always* point to associations using the format
-`{ type: 'users', id: 4 }`. This behavior is intended to prevent the discontinuity present in
-`normalizr` where polymorphic associations are referenced differently than regular associations. It
-will also help you ensure you're retrieving the correct object when resolving the association.
-
-Similarly, `result` will always have keys that reference the name of the schema. This is also for
-the sake of consistency across all responses.
-
-If either of these behaviors significantly hinders app development and you'd prefer `normalizr`'s
-behavior, open an issue to discuss. Better yet, submit a PR that allows this behavior as an option.
 
 ## Installation
 
