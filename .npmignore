@@ -1,4 +1,5 @@
-src
-__tests__
-test-collections
+src/
+__tests__/
+test-data/
+.circleci/
 *.log
